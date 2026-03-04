@@ -2,8 +2,8 @@ public class Segment {
     public Point p1;
     public Point p2;
     public double length(){
-        float x=p2.x-p1.x;
-        float y=p2.y-p1.y;
+        float x=p2.getX()-p1.getX();
+        float y=p2.getY()-p1.getY();
         return Math.sqrt(x * x + y * y);
     }
     public static Segment longestSeg(Segment[] segs){
@@ -19,7 +19,7 @@ public class Segment {
         return longest;
     }
     public String toString(){
-        return "x1="+p1.x+ ", y1="+p1.y+"    x2="+p2.x+ ", y2="+p2.y;
+        return "x1="+p1.getX()+ ", y1="+p1.getY()+"    x2="+p2.getX()+ ", y2="+p2.getY();
     }
 }
 

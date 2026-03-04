@@ -1,6 +1,20 @@
 public class Segment {
-    public Point p1;
-    public Point p2;
+    private Point p1;
+    private Point p2;
+//    public Segment(Point p1, Point p2){ //конструктор с уязвимостями
+//        this.p1=p1;
+//        this.p2=p2;
+//    }
+
+    public Segment(Point p1, Point p2){
+        this.p1=new Point(p1);
+        this.p2=new Point(p2);
+    }
+
+    public String toString1(){
+        return "początek: "+p1+"  koniec: "+p2;
+    }
+
     public double length(){
         float x=p2.getX()-p1.getX();
         float y=p2.getY()-p1.getY();

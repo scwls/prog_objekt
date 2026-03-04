@@ -27,6 +27,11 @@ public class Point {
         this.y=y;
     }
 
+    public Point(Point otherPoint){
+        this.x = otherPoint.getX();
+        this.y = otherPoint.getY();
+    }
+
     public String toString(){
         return "x="+x+ ", y="+y;
     }

@@ -32,7 +32,8 @@ public class Main {
         trojkat[1]=new Point(0.0f, 5.0f);
         trojkat[2]=new Point(5.0f, 0.0f);
         Polygon pol_trojkat=new Polygon(trojkat);
-        System.out.println(pol_trojkat.toString());
-        System.out.println(pol_trojkat.toSVG());
+        Polygon temp=new Polygon(pol_trojkat);
+        trojkat[2]=new Point(3, 7);
+        System.out.println(temp.toSVG());
     }
 }

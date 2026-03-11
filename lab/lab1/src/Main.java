@@ -16,13 +16,10 @@ public class Main {
                 new Point(75.3F, 75.6F),
                 new Point(15.3F, 90.6F)
         });
-        SvgScene svg=new SvgScene();
-        svg.addPolygon(polygon);
-        svg.addPolygon(polygon2);
-        svg.addPolygon(polygon3);
-        //svg.addPolygon(polygon3);
-        System.out.println(svg.toSvg());
-        BoundingBox boxx= polygon2.boundingBox();
-        System.out.println(boxx);
+        Style customStyle= new Style("red", "black", 3.5);
+        Polygon polStyle = new Polygon(points, customStyle);
+        Polygon polDefault = new Polygon(points2);
+        System.out.println(polStyle.toSVG());
+        System.out.println(polDefault.toSVG());
     }
 }

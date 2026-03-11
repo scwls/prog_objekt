@@ -22,5 +22,7 @@ public class Main {
         svg.addPolygon(polygon3);
         //svg.addPolygon(polygon3);
         System.out.println(svg.toSvg());
+        BoundingBox boxx= polygon2.boundingBox();
+        System.out.println(boxx);
     }
 }

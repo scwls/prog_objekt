@@ -21,5 +21,14 @@ public class Main {
         Polygon polDefault = new Polygon(points2);
         System.out.println(polStyle.toSVG());
         System.out.println(polDefault.toSVG());
+        SvgScene scene=new SvgScene();
+        scene.addPolygon(
+                Polygon.square(new Segment(
+                                new Point(130.0f, 100.0f), new Point(100.0f, 140.0f)),
+                        new Style("red", "green", 3.0))
+        );
+        Segment segment1=new Segment(new Point(3.0f, 0.0f), new Point(0.0f,4.0f));
+        Segment segment2=segment1.perpendicular();
+        System.out.println(segment2);
     }
 }

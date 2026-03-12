@@ -10,6 +10,27 @@ public class Segment {
         this.p1=new Point(p1);
         this.p2=new Point(p2);
     }
+    public Point getP1(){
+        return p1;
+    }
+
+    public Point getP2(){
+        return p2;
+    }
+
+    public Segment perpendicular(){
+        float x1= p1.getX();
+        float y1= p1.getY();
+        float x2= p2.getX();
+        float y2= p2.getY();
+        float midX=(x1+x2)/2.0f;
+        float midY=(y1+y2)/2.0f;
+        float dx=(x2-x1)/2.0f;
+        float dy=(y2-y1)/2.0f;
+        Point p3=new Point(midX-dy, midY+dx);
+        Point p4=new Point(midX+dy, midY-dx);
+        return new Segment(p3, p4);
+    }
 
     public String toString1(){
         return "początek: "+p1+"  koniec: "+p2;

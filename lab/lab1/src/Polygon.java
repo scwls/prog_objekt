@@ -13,6 +13,15 @@
             this.points = points;
             this.style=style;
         }
+        public static Polygon square(Segment segment, Style style){
+            Segment perp=segment.perpendicular();
+            Point[] pointsSquare= new Point[4];
+            pointsSquare[0]=segment.getP1();
+            pointsSquare[1]=perp.getP1();
+            pointsSquare[2]=segment.getP2();
+            pointsSquare[3]=perp.getP2();
+            return new Polygon(pointsSquare, style);
+        }
 
 
         public String toSVG(){

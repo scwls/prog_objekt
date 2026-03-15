@@ -1,6 +1,5 @@
-    public class Polygon {
+    public class Polygon extends Shape{
         private Point[] points;
-        private Style style;
         public Polygon(Point[] points) {
             this.points = new Point[points.length];
             for(int i=0; i< points.length; i++){
@@ -22,9 +21,8 @@
             pointsSquare[3]=perp.getP2();
             return new Polygon(pointsSquare, style);
         }
-
-
-        public String toSVG(){
+        @Override
+        public String toSvg(){
             String res="<polygon points=\"";
             for(int i=0; i < points.length; i++ ) {
                 res += points[i].getX() + "," + points[i].getY() + " ";
@@ -32,6 +30,4 @@
             res+="\" " + style.toSvg()+" />";
             return res;
         }
-
-
     }

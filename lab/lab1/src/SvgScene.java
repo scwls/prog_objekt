@@ -3,10 +3,10 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class SvgScene {
-    private Polygon[] polygons=new Polygon[3];
+    private Shape[] shapes=new Shape[3];
     private int index=0;
-    public void addPolygon(Polygon p){
-        polygons[index]=p;
+    public void addShape(Shape p){
+        shapes[index]=p;
         index++;
         if(index==3){
             index=0;
@@ -16,7 +16,7 @@ public class SvgScene {
     public String toSvg(){
         StringBuilder polygonsString = new StringBuilder();
         polygonsString.append("\n");
-        for (var polygon: polygons){
+        for (var polygon: shapes){
             if (polygon != null) {
                 polygonsString.append("\t");
                 polygonsString.append(polygon.toSvg())

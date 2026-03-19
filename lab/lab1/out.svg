@@ -1,5 +1,5 @@
 <svg height="260" width="500" xmlns="http://www.w3.org/2000/svg">
 	<polygon points="130.0,100.0 95.0,105.0 100.0,140.0 135.0,135.0 " style="fill:red;stroke:green;stroke-width:3.0" />
 	<polygon points="78.3,200.6 15.5,18.4 190.4,74.2 " style="fill:none;stroke:black;stroke-width:1.0" />
-	<ellipse rx="100.0" ry="6.0" cx="50.0" cy="90.0" style="fill:red;stroke:green;stroke-width:3.0"/>
+	<ellipse rx="10.0" ry="4.0" cx="5.0" cy="10.0" style="fill:red;stroke:green;stroke-width:3.0"/>
 </svg>

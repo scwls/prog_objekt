@@ -15,13 +15,13 @@ public class Main {
                 new Vec2(350, 200)
         });
 
-        SolidFilledPolygon pentagon = new SolidFilledPolygon(new Vec2[]{
+        StrokeShapeDecorator pentagon = new StrokeShapeDecorator(new SolidFilledPolygon(new Vec2[]{
                 new Vec2(0, 260),
                 new Vec2(100, 460),
                 new Vec2(300, 560),
                 new Vec2(500, 460),
                 new Vec2(600, 260)
-        }, "green");
+        }, "green"), "red", 10.0);
 
         Ellipse ellipse = new Ellipse(new Vec2(500, 700), 400, 100);
 

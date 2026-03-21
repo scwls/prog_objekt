@@ -25,11 +25,11 @@ public class Polygon implements Shape{
         return new BoundingBox(xMin, yMin, xMax - xMin, yMax - yMin);
     }
 
-    public String toSvg(String parametrs)    {
-        String pointsString = "";
+    public String toSvg()    {
+        StringBuilder pointsString = new StringBuilder();
         for(Vec2 point : points) {
-            pointsString += point.x() + "," + point.y() + " ";
+            pointsString.append(point.x()).append(",").append(point.y()).append(" ");
         }
-        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" %s />", pointsString, parametrs);
+        return String.format(Locale.ENGLISH, "<polygon points=\"%s\" />", pointsString);
     }
 }

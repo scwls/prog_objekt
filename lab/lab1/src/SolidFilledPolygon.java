@@ -7,8 +7,7 @@ public class SolidFilledPolygon extends Polygon{
         this.color=color;
     }
     @Override
-    public String toSvg(String parametrs){
-        String newParametrs=String.format(Locale.ENGLISH, "fill=\"%s\" %s ", color, parametrs);
-        return super.toSvg(newParametrs);
+    public String toSvg(){
+        return super.toSvg().replace("/>" ,String.format("fill=\"%s\" />", color));
     }
 }

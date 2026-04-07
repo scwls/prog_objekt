@@ -50,6 +50,9 @@ public class Person implements Comparable<Person> {
         }
         return youngest;
     }
+    public String name(){
+        return String.format("%s, %s", firstname, lastname);
+    }
 
 
     public boolean adopt(Person child){

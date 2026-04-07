@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Person {
+public class Person implements Comparable<Person> {
     private final String firstname;
     private final String lastname;
     private final LocalDate birthday;
@@ -13,6 +13,11 @@ public class Person {
         this.birthday=birthday;
         this.firstname=firstname;
         this.lastname=lastname;
+    }
+
+    @Override
+    public int compareTo(Person other){
+        return this.birthday.compareTo(other.birthday);
     }
 
     @Override
@@ -31,7 +36,7 @@ public class Person {
         }
         Person youngest=children.iterator().next();
         for(Person person: children){
-            if (youngest.birthday.compareTo(person.birthday)>0){
+            if (person.compareTo(youngest)>0){
                 youngest=person;
             }
         }

@@ -4,25 +4,28 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        List<Person> people = new ArrayList<>();
-        people.add(new Person("Mike","Tyson", LocalDate.of(1996, 6, 18)));
-        people.add(new Person("Muhammad", "Ali", LocalDate.of(2012, 1, 17)));
-        people.add(new Person("Тike","Tyson", LocalDate.of(2008, 6, 18)));
-        people.add(new Person("Max", "Ali", LocalDate.of(2007, 1, 17)));
+        List<Person> people=new ArrayList<>();
+        people.add(new Person("Mike", "Tyson", LocalDate.of(1966, 5, 18)));
+        people.add(new Person("Daniło", "Korzemiakin", LocalDate.of(2015, 5, 12)));
+        people.add(new Person("Muhammad", "Ali", LocalDate.of(1944, 1, 2)));
+        people.add(new Person("Mike", "Tyson", LocalDate.of(2000, 5, 18)));
         Person parent = people.get(0);
         Person child = people.get(1);
-        Person child1 = people.get(2);
-        Person child2 = people.get(3);
-        parent.adopt(child);
-        parent.adopt(child1);
-        parent.adopt(child2);
-        Family family=new Family();
-        family.add(people.get(0));
-        family.add(people.get(1));
-        Person mike = family.get("Mike Tyson");
-        System.out.println(mike);
-        System.out.println(parent.adopt(parent));
-        System.out.println(people);
+        System.out.println(parent.adopt(child));
+        System.out.println(parent.adopt(people.get(2)));
         System.out.println(parent.getYoungestChild());
+
+        System.out.println(parent.getChildren());
+
+        Family family = new Family();
+//        for(Person person: people) {
+//            family.add(person);
+//        }
+        family.add(people.get(0));
+        family.add(people.get(1), people.get(2),people.get(3));
+
+        List<Person> mike = family.get("Mike Tyson");
+        System.out.println(mike);
+
     }
 }

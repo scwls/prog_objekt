@@ -1,13 +1,29 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 public class Family {
-    private final Map<String, Person> people = new HashMap<>();
-    public void add(Person... people){
-        for(Person person: people){
-            this.people.put(person.name(), person);
+
+    private final Map<String, List<Person>> people = new HashMap<>();
+
+    public void add(Person... people) {
+        for(Person person: people) {
+            String key = person.name();
+            if (this.people.containsKey(key)) {
+                List<Person> temp = this.people.get(key);
+                temp.add(person);
+                temp.sort(Person::compareTo);
+            }else {
+                List<Person> temp = new ArrayList<>();
+                temp.add(person);
+                this.people.put(key, temp);
+            }
         }
     }
-    public Person get(String key){
+
+    public List<Person> get(String key) {
         return people.get(key);
     }
+
 }

@@ -1,5 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Person implements Comparable<Person> {
@@ -21,6 +26,18 @@ public class Person implements Comparable<Person> {
         this(firstName, lastName, birthday, null);
     }
 
+    public static List<Person> fromCsv(String path) throws IOException {
+        ArrayList<Person> people = new ArrayList<>();
+        BufferedReader file =new BufferedReader(new FileReader(path));
+        String line;
+        file.readLine();
+        while((line = file.readLine())!=null){
+            people.add(fromCsvLine(line));
+        }
+        file.close();
+        return people;
+    }
+
     public static Person fromCsvLine(String line){
         String[] columns = line.split(",", -1);
         String fullname= columns[0];
@@ -31,11 +48,20 @@ public class Person implements Comparable<Person> {
         String death=columns[2];
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.y");
         LocalDate birthdate = LocalDate.parse(birth, formatter);
-        LocalDate deathdate = null;
-        if(!death.isEmpty()){
-            deathdate = LocalDate.parse(death, formatter);
+
+//        LocalDate deathdate = null;
+//        if(!death.isEmpty()){
+//            deathdate = LocalDate.parse(death, formatter);
+//        }
+//        return new Person(fname, lname, birthdate, deathdate);
+
+        try {
+            LocalDate deathdate = LocalDate.parse(death, formatter);
+            return new Person(fname, lname, birthdate, deathdate);
         }
-        return new Person(fname, lname, birthdate, deathdate);
+        catch (DateTimeParseException ignored) {
+            return new Person(fname, lname, birthdate);
+        }
     }
 
     @Override
@@ -54,7 +80,28 @@ public class Person implements Comparable<Person> {
         if (child == this) return false;
         return children.add(child);
     }
+/*
+    public Person getYoungestChild() {
+        if (this.children.isEmpty()) {
+            return null;
+        }
+        Iterator<Person> iter = this.children.iterator();
+        Person now = iter.next();
+        Person youngest = now;
+        while (true) {
+            if (youngest.birthday.compareTo(now.birthday)>0) {
+                youngest=now;
+            }
+            try {
+                now = iter.next();
+            } catch (NoSuchElementException e) {
+                break;
+            }
+        }
+        return youngest;
+    }
 
+ */
 
     public Person getYoungestChild() {
         if (this.children.isEmpty()) {
@@ -73,6 +120,12 @@ public class Person implements Comparable<Person> {
         result.addAll(children);
         result.sort(Person::compareTo);
         return result;
+
+        //return children.stream().sorted().toList();
+
+        //List<Person> result = new ArrayList<>(children.stream().toList());
+        //result.sort(Person::compareTo);
+        //return result;
     }
 
     public String name() {

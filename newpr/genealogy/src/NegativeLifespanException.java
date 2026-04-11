@@ -3,3 +3,5 @@ public class NegativeLifespanException extends Exception {
         super(person.negativeLifespanExceptionMessage());
     }
 }
+
+

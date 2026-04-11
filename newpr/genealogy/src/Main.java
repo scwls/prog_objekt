@@ -4,14 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args){
-        //Person person = Person.fromCsvLine("Marek Kowalski,15.05.1899,,,");
-        //System.out.println(person);
+    public static void main(String[] args) {
+        List<Person> people = null;
+
         try {
-            List<Person> people = Person.fromCsv("family.csv");
-            System.out.println(people);
+            people = Person.fromCsv("family.csv");
+
+            System.out.println("--- Lista wczytanych osób ---");
+            if (people != null) {
+                for (Person p : people) {
+                    System.out.println(p);
+                }
+            }
+            Family family = new Family();
+
+            if (people != null) {
+                for (Person p : people) {
+                    try {
+                        family.add(p);
+                    } catch (AmbiguousPersonException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+            }
+
         } catch (IOException e) {
-            System.err.println("Blad dostepu do pliku");
+            System.err.println("Błąd dostępu do pliku: " + e.getMessage());
         }
     }
 }

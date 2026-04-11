@@ -23,6 +23,7 @@ public class Person implements Comparable<Person> {
         if(this.death!=null && this.birthday.isAfter(this.death)){
             throw new NegativeLifespanException(this);
         }
+
     }
 
     public Person(String firstName, String lastName, LocalDate birthday) throws NegativeLifespanException{
@@ -36,8 +37,14 @@ public class Person implements Comparable<Person> {
         file.readLine();
         while((line = file.readLine())!=null){
             try {
-                people.add(fromCsvLine(line));
-            }catch(NegativeLifespanException e){
+                Person newperson = fromCsvLine(line);
+                for(Person person: people){
+                    if(!person.name().equals(newperson.name())){
+                        throw new AmbiguousPersonException(person, newperson);
+                    }
+                    people.add(newperson);
+                }
+            }catch(NegativeLifespanException | AmbiguousPersonException e){
                 System.err.println(e.getMessage());
             }
 
@@ -148,4 +155,10 @@ public class Person implements Comparable<Person> {
         return String.format("Osoba %s %s ma datę śmierci %s wcześniejszą niż datę urodzenia %s",
                 this.firstName, this.lastName, this.death, this.birthday);
     }
+
+    String AmbiguousPersonExceptionMessage(){
+        return String.format("Osoba %s %s juz istnieje",
+                this.firstName, this.lastName);
+    }
+
 }

@@ -7,15 +7,14 @@ public class Family {
 
     private final Map<String, List<Person>> people = new HashMap<>();
 
-    public void add(Person... people) throws AmbiguousPersonException { // 1. Добавили throws
+    public void add(Person... people) {
         for(Person person: people) {
             String key = person.name();
-
             if (this.people.containsKey(key)) {
-                Person existingPerson = this.people.get(key).get(0);
-                throw new AmbiguousPersonException(existingPerson, person);
-
-            } else {
+                List<Person> temp = this.people.get(key);
+                temp.add(person);
+                temp.sort(Person::compareTo);
+            }else {
                 List<Person> temp = new ArrayList<>();
                 temp.add(person);
                 this.people.put(key, temp);

@@ -1,4 +1,37 @@
 @startuml
-Alice->Bob : Hello
-return ok
+object "Andrzej Kowalski"
+object "Jan Kowalski"
+object "Elżbieta Kowalska"
+object "Krystyna Dąbrowska"
+object "Tomasz Dąbrowski"
+object "Alicja Wiśniewska"
+object "Joanna Nowak"
+object "Kacper Kowalski"
+object "Anna Dąbrowska"
+object "Ewa Kowalska"
+object "Marek Kowalski"
+"Andrzej Kowalski" <|-- "Kacper Kowalski"
+
+"Andrzej Kowalski" <|-- "Joanna Nowak"
+
+"Kacper Kowalski" <|-- "Elżbieta Kowalska"
+
+"Kacper Kowalski" <|-- "Jan Kowalski"
+
+"Anna Dąbrowska" <|-- "Alicja Wiśniewska"
+
+"Anna Dąbrowska" <|-- "Tomasz Dąbrowski"
+
+"Ewa Kowalska" <|-- "Krystyna Dąbrowska"
+
+"Ewa Kowalska" <|-- "Anna Dąbrowska"
+
+"Ewa Kowalska" <|-- "Andrzej Kowalski"
+
+"Marek Kowalski" <|-- "Krystyna Dąbrowska"
+
+"Marek Kowalski" <|-- "Anna Dąbrowska"
+
+"Marek Kowalski" <|-- "Andrzej Kowalski"
+
 @enduml

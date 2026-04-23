@@ -197,4 +197,7 @@ public class Person implements Comparable<Person>, Serializable {
                 .filter(person -> person.name().contains(substring))
                 .collect(Collectors.toList());
     }
+    public static List<Person> sorted(List<Person> people){
+        return people.stream().sorted().toList();
+    }
 }

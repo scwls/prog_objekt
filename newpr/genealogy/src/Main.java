@@ -30,5 +30,9 @@ public class Main {
         sorted.stream()
                 .map(Person::name)
                 .forEach(System.out::println);
+        List<Person> sortedDeath = Person.getDeceasedByLifespan(people);
+        sortedDeath.stream()
+                .map(Person::name)
+                .forEach(System.out::println);
     }
 }

@@ -210,4 +210,7 @@ public class Person implements Comparable<Person>, Serializable {
                 .sorted(Comparator.comparingLong(Person::lifespan).reversed())
                 .toList();
     }
+    public static Person getOldestLiving(List<Person> people){
+        return people.stream().filter(person -> person.death == null).min(Comparator.comparing(p -> p.birthday)).orElse(null);
+    }
 }

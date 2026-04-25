@@ -34,5 +34,7 @@ public class Main {
         sortedDeath.stream()
                 .map(Person::name)
                 .forEach(System.out::println);
+        Person oldest = Person.getOldestLiving(sorted);
+        System.out.println("OLDEST: " + oldest);
     }
 }

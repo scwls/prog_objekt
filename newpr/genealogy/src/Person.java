@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Person implements Comparable<Person>, Serializable {
@@ -170,17 +171,20 @@ public class Person implements Comparable<Person>, Serializable {
         return people;
     }
 
-    public static String generateTree(List<Person> people, Function<String, String> func){
+    public static String generateTree(List<Person> people, Function<String,String> func, Predicate<Person> condition){
         Set<Person> objects = new HashSet<>();
         for (Person person: people){
             objects.add(person);
             objects.addAll(person.children);
         }
-        String objectsString = objects.stream()
+        Map<Boolean, List<Person>> passingFailing = people.stream().collect(Collectors.partitioningBy(condition));
+        String livingString = passingFailing.get(false).stream()
                 .map(person -> String.format("object \"%s\"" ,person.name()))
                 .map(func)
                 .collect(Collectors.joining("\n"));
-
+        String deadString = passingFailing.get(true).stream()
+                .map(person -> String.format("object \"%s\"" ,person.name()))
+                .collect(Collectors.joining("\n"));
 //        StringBuilder relationsStringBuffer = new StringBuilder();
 //        for (Person person: people) {
 //            for (Person child: person.getChildren()) {
@@ -192,7 +196,7 @@ public class Person implements Comparable<Person>, Serializable {
                         .map(child -> String.format("\"%s\" <|-- \"%s\"\n",parent.name(),child.name())))
                 .collect(Collectors.joining("\n"));
 
-        return String.format("@startuml\n%s\n%s\n@enduml", objectsString, relationsString);
+        return String.format("@startuml\n%s\n%s\n%s\n@enduml", livingString, deadString, relationsString);
     }
     public static List<Person> filterPersonBySubstring(List<Person> people, String substring){
         return people.stream()

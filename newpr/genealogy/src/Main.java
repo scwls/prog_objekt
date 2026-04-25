@@ -18,23 +18,22 @@ public class Main {
         }/* catch (ClassNotFoundException e) {
           throw new RuntimeException(e);
       }*/
-        PlantUMLRunner.setJarPath("D:/Studia/programowanie objektowe/newpr/genealogy/plantuml-1.2026.2.jar");
-        PlantUMLRunner.generate(Person.generateTree(people,text -> String.format("%s #FFFF00",text)),"output", "test");
-//        List<Person> filtered = Person.filterPersonBySubstring(people, "ska");
+        PlantUMLRunner.setJarPath("plantuml-1.2026.2.jar");
+        List<Person> filtered = Person.filterPersonBySubstring(people, "ska");
         //System.out.println(filtered);
-//        filtered.stream()
-//                .map(Person::name)
-//                .forEach(System.out::println);
-//
-        List<Person> sorted = Person.sorted(people);
+        /*List<Person> sorted = Person.sorted(people);
         sorted.stream()
                 .map(Person::name)
-                .forEach(System.out::println);
-        List<Person> sortedDeath = Person.getDeceasedByLifespan(people);
-        sortedDeath.stream()
-                .map(Person::name)
-                .forEach(System.out::println);
-        Person oldest = Person.getOldestLiving(sorted);
-        System.out.println("OLDEST: " + oldest);
+                .forEach(System.out::println);*/
+//        List<Person> sortedDeath = Person.getDeceasedByLifespan(people);
+//        sortedDeath.stream()
+//                .map(Person::name)
+//                .forEach(System.out::println);
+        PlantUMLRunner.generate(Person.generateTree(people,text -> String.format("%s #FFFF00",text), filtered::contains),"output", "test");
+        System.out.println();
+        Person p = Person.getOldestLiving(people);
+        System.out.println(p);
+
+
     }
 }

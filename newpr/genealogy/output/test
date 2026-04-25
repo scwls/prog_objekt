@@ -1,26 +1,18 @@
 @startuml
-object "Andrzej Kowalski" #FFFF00
-object "Jan Kowalski" #FFFF00
-object "Elżbieta Kowalska" #FFFF00
-object "Krystyna Dąbrowska" #FFFF00
 object "Tomasz Dąbrowski" #FFFF00
-object "Alicja Wiśniewska" #FFFF00
 object "Joanna Nowak" #FFFF00
-object "Kacper Kowalski" #FFFF00
-object "Anna Dąbrowska" #FFFF00
-object "Ewa Kowalska" #FFFF00
+object "Andrzej Kowalski" #FFFF00
 object "Marek Kowalski" #FFFF00
+object "Jan Kowalski" #FFFF00
+object "Kacper Kowalski" #FFFF00
+object "Alicja Wiśniewska"
+object "Ewa Kowalska"
+object "Krystyna Dąbrowska"
+object "Anna Dąbrowska"
+object "Elżbieta Kowalska"
 "Andrzej Kowalski" <|-- "Kacper Kowalski"
 
 "Andrzej Kowalski" <|-- "Joanna Nowak"
-
-"Kacper Kowalski" <|-- "Elżbieta Kowalska"
-
-"Kacper Kowalski" <|-- "Jan Kowalski"
-
-"Anna Dąbrowska" <|-- "Alicja Wiśniewska"
-
-"Anna Dąbrowska" <|-- "Tomasz Dąbrowski"
 
 "Ewa Kowalska" <|-- "Krystyna Dąbrowska"
 
@@ -28,10 +20,18 @@ object "Marek Kowalski" #FFFF00
 
 "Ewa Kowalska" <|-- "Andrzej Kowalski"
 
+"Kacper Kowalski" <|-- "Elżbieta Kowalska"
+
+"Kacper Kowalski" <|-- "Jan Kowalski"
+
 "Marek Kowalski" <|-- "Krystyna Dąbrowska"
 
 "Marek Kowalski" <|-- "Anna Dąbrowska"
 
 "Marek Kowalski" <|-- "Andrzej Kowalski"
+
+"Anna Dąbrowska" <|-- "Alicja Wiśniewska"
+
+"Anna Dąbrowska" <|-- "Tomasz Dąbrowski"
 
 @enduml

@@ -19,7 +19,7 @@ public class Main {
           throw new RuntimeException(e);
       }*/
         PlantUMLRunner.setJarPath("D:/Studia/programowanie objektowe/newpr/genealogy/plantuml-1.2026.2.jar");
-        PlantUMLRunner.generate(Person.generateTree(people),"output", "test");
+        PlantUMLRunner.generate(Person.generateTree(people,text -> String.format("%s #FFFF00",text)),"output", "test");
 //        List<Person> filtered = Person.filterPersonBySubstring(people, "ska");
         //System.out.println(filtered);
 //        filtered.stream()

@@ -1,15 +1,15 @@
 @startuml
-object "Andrzej Kowalski"
-object "Jan Kowalski"
-object "Elżbieta Kowalska"
-object "Krystyna Dąbrowska"
-object "Tomasz Dąbrowski"
-object "Alicja Wiśniewska"
-object "Joanna Nowak"
-object "Kacper Kowalski"
-object "Anna Dąbrowska"
-object "Ewa Kowalska"
-object "Marek Kowalski"
+object "Andrzej Kowalski" #FFFF00
+object "Jan Kowalski" #FFFF00
+object "Elżbieta Kowalska" #FFFF00
+object "Krystyna Dąbrowska" #FFFF00
+object "Tomasz Dąbrowski" #FFFF00
+object "Alicja Wiśniewska" #FFFF00
+object "Joanna Nowak" #FFFF00
+object "Kacper Kowalski" #FFFF00
+object "Anna Dąbrowska" #FFFF00
+object "Ewa Kowalska" #FFFF00
+object "Marek Kowalski" #FFFF00
 "Andrzej Kowalski" <|-- "Kacper Kowalski"
 
 "Andrzej Kowalski" <|-- "Joanna Nowak"

@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Person implements Comparable<Person>, Serializable {
@@ -169,7 +170,7 @@ public class Person implements Comparable<Person>, Serializable {
         return people;
     }
 
-    public static String generateTree(List<Person> people){
+    public static String generateTree(List<Person> people, Function<String, String> func){
         Set<Person> objects = new HashSet<>();
         for (Person person: people){
             objects.add(person);
@@ -177,6 +178,7 @@ public class Person implements Comparable<Person>, Serializable {
         }
         String objectsString = objects.stream()
                 .map(person -> String.format("object \"%s\"" ,person.name()))
+                .map(func)
                 .collect(Collectors.joining("\n"));
 
 //        StringBuilder relationsStringBuffer = new StringBuilder();

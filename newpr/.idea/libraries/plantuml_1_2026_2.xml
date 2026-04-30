@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="plantuml-1.2026.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/genealogy/plantuml-1.2026.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

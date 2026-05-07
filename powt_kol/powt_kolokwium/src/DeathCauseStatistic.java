@@ -30,7 +30,29 @@ public class DeathCauseStatistic {
         return statistic;
     }
 
+    public class AgeBracketDeaths{
+        public final int young;
+        public final int old;
+        public final int deathCount;
+        public AgeBracketDeaths(int young, int old, int deathCount ) {
+            this.young = young;
+            this.old = old;
+            this.deathCount=deathCount;
+        }
+    }
+
     public String getCode() {
         return code;
+    }
+
+    public AgeBracketDeaths getAge(int age){
+        int index = age/5;
+        if(index >= death.size()){
+            index=death.size()-1;
+        }
+        int young = index*5;
+        int old = young+4;
+        int count= death.getOrDefault(new Range(young, old), 0); //getOrDefault - если группы не существует, то подставляет 0ж
+        return new AgeBracketDeaths(young, old, count);
     }
 }

@@ -1,6 +1,7 @@
 import java.util.AbstractList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 public class CustomList<T> extends AbstractList<T> {
     Node<T> head = null;
@@ -127,5 +128,14 @@ public class CustomList<T> extends AbstractList<T> {
                 return result;
             }
         };
+    }
+
+    @Override
+    public Stream<T> stream() {
+        Stream.Builder<Object> builder = Stream.builder();
+        for(T value: this){
+            builder.accept(value);
+        }
+        return (Stream<T>) builder.build();
     }
 }

@@ -9,7 +9,7 @@ public class DeathCauseStatisticList {
         DeathCauseStatisticList result = new DeathCauseStatisticList();
         try {
             result.statistics=Files.lines(path)
-                    .skip(1)
+                    .skip(2)
                     .map(DeathCauseStatistic::fromCsvLine)
                     .toList();
         } catch (IOException e) {

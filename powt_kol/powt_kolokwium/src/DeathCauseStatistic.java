@@ -55,4 +55,5 @@ public class DeathCauseStatistic {
         int count= death.getOrDefault(new Range(young, old), 0); //getOrDefault - если группы не существует, то подставляет 0ж
         return new AgeBracketDeaths(young, old, count);
     }
+
 }

@@ -32,8 +32,10 @@ public class Server {
     }
 
     public void broadcast(String message, ClientHandler sender) {
+        message = String.format("%s : %s", sender.getLogin() ,message);
+        String finalMessage = message;
         handlers.values().stream()
                 .filter(receiver -> receiver != sender)
-                .forEach(handler -> handler.send(message));
+                .forEach(handler -> handler.send(finalMessage));
     }
 }

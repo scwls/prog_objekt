@@ -30,12 +30,17 @@ public class Server {
                         .map(ClientHandler::getLogin).collect(Collectors.joining("\n"))
         );
     }
+    public String signMessage(String message, ClientHandler sender) {
+        return String.format("%s: %s", sender.getLogin(), message);
+    }
 
     public void broadcast(String message, ClientHandler sender) {
-        message = String.format("%s : %s", sender.getLogin() ,message);
-        String finalMessage = message;
         handlers.values().stream()
                 .filter(receiver -> receiver != sender)
-                .forEach(handler -> handler.send(finalMessage));
+                .forEach(handler -> handler.send(signMessage(message, sender)));
+    }
+
+    public void whisper(String message, ClientHandler sender, String recipientLogin) {
+        handlers.get(recipientLogin).send(signMessage(message, sender));
     }
 }

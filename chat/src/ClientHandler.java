@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.Arrays;
 
 public class ClientHandler implements Runnable {
     private final Socket socket;
@@ -33,9 +34,15 @@ public class ClientHandler implements Runnable {
         try {
             while ((message = reader.readLine()) != null)
                 if (message.startsWith("/")) {
-                    String command = message.split(" ")[0];
+                    String[] tokens = message.split(" ");
+                    String command = tokens[0];
                     switch (command) {
                         case "/online" -> server.online(this);
+                        case "/w" -> server.whisper(
+                                String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length)),
+                                this,
+                                tokens[1]
+                        );
                     }
                 }else{
                     server.broadcast(message, this);

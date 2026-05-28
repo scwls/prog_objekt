@@ -6,6 +6,12 @@ public class ClientHandler implements Runnable {
     private final BufferedReader reader;
     private final PrintWriter writer;
     private final Server server;
+    private final String login;
+
+    public String getLogin() {
+        return this.login;
+    }
+
     public ClientHandler(Socket socket, Server server) throws IOException {
         this.socket = socket;
         this.server = server;
@@ -13,6 +19,8 @@ public class ClientHandler implements Runnable {
         OutputStream output = socket.getOutputStream();
         reader = new BufferedReader(new InputStreamReader(input));
         writer = new PrintWriter(output, true);
+        this.login = reader.readLine();
+
     }
 
     public void send(String message) {
@@ -24,7 +32,15 @@ public class ClientHandler implements Runnable {
         String message;
         try {
             while ((message = reader.readLine()) != null)
-                server.broadcast(message, this);
+                if (message.startsWith("/")) {
+                    String command = message.split(" ")[0];
+                    switch (command) {
+                        case "/online" -> server.online(this);
+                    }
+                }else{
+                    server.broadcast(message, this);
+                }
+
             socket.close();
         } catch (IOException e) { throw new RuntimeException(e); }
     }

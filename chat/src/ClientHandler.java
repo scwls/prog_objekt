@@ -7,7 +7,7 @@ public class ClientHandler implements Runnable {
     private final BufferedReader reader;
     private final PrintWriter writer;
     private final Server server;
-    private final String login;
+    private String login;
 
     public String getLogin() {
         return this.login;
@@ -20,8 +20,6 @@ public class ClientHandler implements Runnable {
         OutputStream output = socket.getOutputStream();
         reader = new BufferedReader(new InputStreamReader(input));
         writer = new PrintWriter(output, true);
-        this.login = reader.readLine();
-
     }
 
     public void send(String message) {
@@ -32,6 +30,8 @@ public class ClientHandler implements Runnable {
     public void run() {
         String message;
         try {
+            this.login = reader.readLine();
+            System.out.println("Login: " + this.login);
             while ((message = reader.readLine()) != null)
                 if (message.startsWith("/")) {
                     String[] tokens = message.split(" ");

@@ -1,28 +1,29 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
     private JTextArea chatArea;
     private JPanel rootPanel;
     private JList<String> userList;
-    private JButton send;
     private JTextField inputField;
+    private JButton sendButton;
 
-    public MainWindow(){
-        this.setTitle("Chat client");
-        this.setMinimumSize(new Dimension(800, 800));
+    public MainWindow(String login) {
+        this.setTitle(login);
+        this.setMinimumSize(new Dimension(800, 600));
         this.setContentPane(rootPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        send.addActionListener(e -> send());
-        inputField.addActionListener(e -> send());
+        this.pack();
+        sendButton.addActionListener(actionEvent -> send());
+        inputField.addActionListener(actionEvent -> send());
     }
-
     private void send(){
         String message = inputField.getText();
-        if(message.isEmpty()){
+        if(message.isEmpty())
             return;
-        }
-        chatArea.append(message+"\n");
+        chatArea.append(message + '\n');
         inputField.setText("");
     }
 }

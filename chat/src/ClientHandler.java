@@ -20,18 +20,20 @@ public class ClientHandler implements Runnable {
         OutputStream output = socket.getOutputStream();
         reader = new BufferedReader(new InputStreamReader(input));
         writer = new PrintWriter(output, true);
+        this.login = reader.readLine();
+        System.out.println("Login: " + this.login);
     }
 
     public void send(String message) {
         writer.println(message);
+        System.out.println(message);
     }
 
     @Override
     public void run() {
         String message;
         try {
-            this.login = reader.readLine();
-            System.out.println("Login: " + this.login);
+
             while ((message = reader.readLine()) != null)
                 if (message.startsWith("/")) {
                     String[] tokens = message.split(" ");

@@ -6,6 +6,7 @@ public class Main {
         Client client = null;
         try {
             client = new Client("127.0.0.1", 8000);
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(
                     null,
@@ -21,7 +22,10 @@ public class Main {
             System.exit(2);
         }
         client.send(login);
-        MainWindow mainWindow = new MainWindow(login);
+        Thread thread = new Thread(client);
+        thread.setDaemon(true);
+        thread.start();
+        MainWindow mainWindow = new MainWindow(login, client);
         mainWindow.setVisible(true);
     }
 }

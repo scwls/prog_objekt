@@ -38,7 +38,7 @@ public class Server {
 
     public void broadcast(String message, ClientHandler sender) {
         handlers.values().stream()
-                .filter(receiver -> receiver != sender)
+                // .filter(receiver -> receiver != sender)
                 .forEach(handler -> handler.send(signMessage(message, sender)));
     }
 

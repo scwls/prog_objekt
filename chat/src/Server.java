@@ -17,10 +17,12 @@ public class Server {
         System.out.println("Server started");
         while(true) {
             Socket socket = serverSocket.accept();
+            System.out.println("Кто-то пытается подключиться к серверу...");
             ClientHandler handler = new ClientHandler(socket, this);
             Thread thread = new Thread(handler);
             thread.start();
             handlers.put(handler.getLogin(),handler);
+            System.out.println("Пользователь " + handler.getLogin() + " успешно вошел!");
         }
     }
 

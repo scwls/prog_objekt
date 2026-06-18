@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class GamePanel extends JPanel {
     public static final int WIDTH  = 640;
@@ -12,6 +14,18 @@ public class GamePanel extends JPanel {
         setFocusable(true);
         GraphicsItem.setCanvasSize(WIDTH, HEIGHT);
         paddle = new Paddle();
+        this.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent mouseEvent) {
+                paddle.updatePosition(mouseEvent.getX());
+                repaint();
+            }
+        });
     }
 
     @Override

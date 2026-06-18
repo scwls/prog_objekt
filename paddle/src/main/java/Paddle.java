@@ -1,5 +1,7 @@
 import java.awt.*;
 
+import static java.lang.Math.clamp;
+
 public class Paddle extends GraphicsItem {
 
     public Paddle() {
@@ -12,5 +14,10 @@ public class Paddle extends GraphicsItem {
     public void draw(Graphics2D graphics2D){
         graphics2D.setColor(new Color(0x041D50));
         graphics2D.fillRect((int)x, (int)y, (int)width, (int)height);
+    }
+
+    public void updatePosition(double x){
+
+        this.x = Math.clamp(x - 0.5*this.width, 0, canvasWidth - this.width);
     }
 }

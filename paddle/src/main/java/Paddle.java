@@ -17,7 +17,6 @@ public class Paddle extends GraphicsItem {
     }
 
     public void updatePosition(double x){
-
         this.x = Math.clamp(x - 0.5*this.width, 0, canvasWidth - this.width);
     }
 }
